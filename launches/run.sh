@@ -6,10 +6,10 @@ WORK_DIR=$(pwd)
 SRC_DIR="${WORK_DIR}/scripts"
 
 python "${SRC_DIR}"/main.py train\
-  --cuda=1,6 \
-  --dataset=Altrasound \
-  --model_type=res101 \
-  --save_dir_name=res101_batch16 \
+  --cuda=0 \
+  --dataset=DLDataset \
+  --model_type=swin_transformer \
+  --save_dir_name=swin_transformer_batch16 \
   --num_workers=8 \
   --kfold=5 \
   --epoch=150 \

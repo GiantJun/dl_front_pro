@@ -74,10 +74,10 @@ class settings:
         self.ImageNet100_dir = '/media/huangyujun/disk/data/Imagenet2012'
 
         # go to ~/.bashrc and add envrionment varieble to the end, likes "export ALTRASOUND='/(your data path)' "
-        self.train_csv_dir = '/media/huangyujun/disk/data/深度学习前沿大作业_超声数据集/内部数据集/Original_train_dataset/label.csv'
-        self.test_csv_dir = '/media/huangyujun/disk/data/深度学习前沿大作业_超声数据集/外部验证数据集/Original_test_dataset/label.csv'
+        self.train_csv_dir = environ["DLDATASET_TRAIN"]
+        self.test_csv_dir = environ["DLDATASET_TEST"]
 
-        self.in_channels = len(self.select_list)
+        self.in_channels = 3
         # 数据集进行归一化、标准化的参数，以及输出类别数量
         self.mean = [0.5, 0.5, 0.5]
         self.std = [0.5,0.5,0.5]

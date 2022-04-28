@@ -112,7 +112,6 @@ def save_model_dict(model_dict, args, save_name):
     save_dict = {'model_type':args.model_type,
                 'model_dic':model_dict,
                 'img_size':args.img_size,
-                'select_list':args.select_list
                 }
 
     torch.save(save_dict, join(args.model_dir, save_name))

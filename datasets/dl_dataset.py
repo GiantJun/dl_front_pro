@@ -14,7 +14,16 @@ class DLDataset(Dataset):
         self.transform = transform
         base_dir = dirname(csv_path)
         self.data_dir = join(base_dir, 'cleaned_data')
-        self.data_frame = pd.read_csv(csv_path)
+        data_frame = pd.read_csv(csv_path)
+        self.class_num=2
+        self.class_names=['BA','non-BA']
+
+        self.name_list = data_frame['Image_name:'].to_list()
+        self.label_list = data_frame['Label:'].to_list()
+    
+    def get_XY(self):
+        return self.name_list, self.label_list
+
 
     def __len__(self):
         """返回 dataset 大小"""
@@ -25,9 +34,9 @@ class DLDataset(Dataset):
 
     def __getitem__(self, idx):
         """根据 idx 从 图片名字-类别 列表中获取相应的 image 和 label"""
-        img_path = join(self.data_dir, self.data_frame.iat[idx, 0].lower())
+        img_path = join(self.data_dir, self.name_list[idx].lower())
         image = Image.open(img_path)
-        target = self.data_frame.iat[idx, 1]
+        target = self.label_list[idx]
 
         if self.transform:
             sample = self.transform(image)
